@@ -23,11 +23,11 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl font-bold text-white">Tech Empire</h1>
             <p className="text-white/60 mt-2">AI-curated. Human-approved. Zero fluff.</p>
             <button
-              onClick={() => fetch("/api/scrape", { method: "POST" })}
-              className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded"
-            >
-              Re-scrape
-            </button>
+  onClick={() => fetch("/api/scrape", { method: "POST" })}
+  className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded shadow"
+>
+  Re-scrape
+</button>
           </div>
         </header>
 
