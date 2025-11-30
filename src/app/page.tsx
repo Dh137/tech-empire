@@ -1,7 +1,14 @@
 import NewsCard from "@/components/cards/NewsCard";
-import { mockArticles } from "@/lib/mock/seed";
 
-export default function Home() {
+async function getArticles() {
+  const res = await fetch(`${process.env.SCRAPER_URL}/articles`, { next: { revalidate: 60 } });
+  if (!res.ok) throw new Error("Scraper unreachable");
+  return res.json();
+}
+
+export default async function Home() {
+  const articles = await getArticles();
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-cyan-950">
       <div className="container mx-auto px-6 py-12">
@@ -11,7 +18,7 @@ export default function Home() {
         </header>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {mockArticles.map((a, i) => (
+          {articles.map((a: any, i: number) => (
             <NewsCard key={a.id} article={a} index={i} />
           ))}
         </div>
